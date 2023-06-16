@@ -17,14 +17,16 @@ public class TestesApiCampeonatoExercício1 {
 		String token = "Bearer test_eade22cb669bacd6633dd23635cf65";
 
 		Map<String, String> headerMap = new HashMap<>();
-		String url = "https://api.api-futebol.com.br/v1/campeonatos";
+		String url = "https://api.api-futebol.com.br/v1";
+		String path = "/campeonatos";
+
 		headerMap.put("Authorization", token);
 
 		given()
 				.headers(headerMap)
 				.log().all()
 				.when()
-				.get(url)
+				.get(url + path)
 				.then().assertThat()
 				.log().all()
 				.statusCode(200)
