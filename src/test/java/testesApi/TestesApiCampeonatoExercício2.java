@@ -1,12 +1,14 @@
 package testesApi;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.containsString;
+import org.junit.Assert;
 import org.junit.Test;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 public class TestesApiCampeonatoExercício2 {
 
@@ -20,18 +22,23 @@ public class TestesApiCampeonatoExercício2 {
 		Map<String, String> headerMap = new HashMap<>();
 		String url = "https://api.api-futebol.com.br/v1/campeonatos";
 		headerMap.put("Authorization", token);
+		headerMap.put("charset", "UTF-8");
 		queryParams.put("campeonato_id", "14");
 
-		given()
+		Response response = given()
 				.headers(headerMap)
 				.queryParams(queryParams)
 				.log().all()
 				.when()
-				.get(url)
-				.then().assertThat()
-				.log().all()
-				.statusCode(200)
-				.body(containsString("Brasileiro"));
+				.get(url);
+		// .then().assertThat()
+		// .log().all()
+		// .statusCode(200)
+		// .body(containsString("Brasileiro"));
+
+		List<String> nomePopularList = response.jsonPath().getList("edicao_atual.nome_popular");
+		String valorEsperado = "Brasileirão Série B 2023";
+		Assert.assertTrue(nomePopularList.contains(valorEsperado));
 
 	}
 
