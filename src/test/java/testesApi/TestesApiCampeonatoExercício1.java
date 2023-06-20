@@ -11,7 +11,7 @@ import io.restassured.RestAssured;
 public class TestesApiCampeonatoExercício1 {
 
 	@Test
-	public void testePortalDoCampeonato2() {
+	public void testePortalDoCampeonato1() {
 
 		RestAssured.useRelaxedHTTPSValidation();
 		String token = "Bearer test_eade22cb669bacd6633dd23635cf65";

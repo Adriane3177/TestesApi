@@ -28,14 +28,12 @@ public class TestesApiCampeonatoExercício3 {
 				.log().all()
 				.when()
 				.get(url);
-		// .then().assertThat()
-		// .log().all()
-		// .statusCode(200)
-		// .body(containsString("Caio Dantas"));
+
 		List<String> nomePopularList = response.jsonPath().getList("atleta.nome_popular");
 		String valorEsperado = "Caio Dantas";
 		Assert.assertTrue(nomePopularList.contains(valorEsperado));
 		System.out.println(valorEsperado);
+		System.out.println(nomePopularList);
 
 	}
 
